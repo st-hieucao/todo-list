@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import axios from "axios";
+import { Todo } from "../models/Todo";
+import { BASE_URL } from "../constants";
 
 const TodoForm = ({ addTodo }: any) => {
   const [value, setvalue] = useState("");
@@ -7,11 +10,19 @@ const TodoForm = ({ addTodo }: any) => {
     setvalue(e.target.value);
   };
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     if (!value)
       return;
-    addTodo(value);
+  
+    const body: any = {
+      title: value,
+      body: '',
+      userId: 1,
+    };
+    const { data } = await axios.post(`${BASE_URL}/posts`, body);
+    const newTodo = new Todo(data);
+    addTodo(newTodo);
     setvalue("");
   };
 

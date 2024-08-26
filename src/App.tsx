@@ -12,14 +12,13 @@ function App() {
   useEffect(() => {
     (async () => {
       const data = await axios.get(`${BASE_URL}/posts`);
-      console.log(data.data)
       const todosMapping = data.data.map((todo: any) => new Todo(todo));
       setTodos(todosMapping);
     })();
   }, []);
 
   const addTodo = (todo: Todo) => {
-    setTodos([...todos]);
+    setTodos([todo, ...todos]);
   };
 
   const deleteTodo = (id: number) => {
