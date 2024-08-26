@@ -30,7 +30,7 @@ const TodoForm = ({ addTodo }: any) => {
     <div className={"container"}>
       <form onSubmit={handleSubmit} className={"form-group row todo-form"}>
         <input
-          className={"form-control col-md-8 "}
+          className={"form-control col-md-8 form-input"}
           type={"text"}
           placeholder={"Add a ToDo"}
           value={value}
