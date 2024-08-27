@@ -6,11 +6,11 @@ import { BASE_URL } from "../constants";
 const TodoForm = ({ addTodo }: any) => {
   const [value, setvalue] = useState("");
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setvalue(e.target.value);
   };
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!value)
       return;

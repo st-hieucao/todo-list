@@ -4,7 +4,7 @@ import { Todo } from "../models/Todo"
 const Todos = ({ todos, deleteTodo }: { todos: Todo[], deleteTodo: (id: number) => void }) => {
   return (
     <div className={"todo-list"}>
-      {todos.map((todo: any, index: any) => (
+      {todos.map((todo: Todo, index: number) => (
         <TodoItem
           todo={todo}
           key={index}
