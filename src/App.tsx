@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      const data = await axios.get(`${BASE_URL}/posts`);
+      const data = await axios.get(`${BASE_URL}/todos`);
       const todosMapping = data.data.map((todo: any) => new Todo(todo));
       setTodos(todosMapping);
     })();

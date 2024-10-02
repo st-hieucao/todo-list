@@ -17,10 +17,10 @@ const TodoForm = ({ addTodo }: any) => {
   
     const body: any = {
       title: value,
-      body: '',
+      completed: false,
       userId: 1,
     };
-    const { data } = await axios.post(`${BASE_URL}/posts`, body);
+    const { data } = await axios.post(`${BASE_URL}/todos`, body);
     const newTodo = new Todo(data);
     addTodo(newTodo);
     setvalue("");
