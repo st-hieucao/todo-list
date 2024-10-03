@@ -41,6 +41,25 @@ describe('ToDo App', () => {
 
     cy.get('.todo').should('not.contain', newTodo);
   });
+
+  it('should toggle the todo completed state when clicking the checkbox', () => {
+    cy.get('.todo').first().as('firstTodo');
+
+    cy.get('@firstTodo').find('.todo-checkbox').then($checkbox => {
+      const isChecked = $checkbox.prop('checked');
+
+      // Click checkbox
+      cy.wrap($checkbox).click();
+
+      if (!isChecked) {
+        cy.get('@firstTodo').find('.todo-checkbox').should('be.checked');
+        cy.get('@firstTodo').find('.todo-title').should('have.class', 'completed');
+      } else {
+        cy.get('@firstTodo').find('.todo-checkbox').should('not.be.checked');
+        cy.get('@firstTodo').find('.todo-title').should('not.have.class', 'completed');
+      }
+    });
+  });
 });
 
 // describe('JSONPlaceholder API Testing with Cypress', () => {
