@@ -81,6 +81,17 @@
   transition: 0.2s ease;
 }
 
+.todo-title.completed {
+  text-decoration: line-through;
+  color: gray;
+}
+
+.todo-checkbox {
+  margin-right: 10px;
+  width: 20px;
+  height: 20px;
+}
+
 .form-group {
   display: flex;
   align-items: center;
