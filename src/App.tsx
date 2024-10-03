@@ -26,6 +26,14 @@ function App() {
     setTodos([...todosDeleted]);
   };
 
+  const toggleTodoCompletion = (id: number) => {
+    setTodos(
+      todos.map(todo =>
+        todo.id === id ? { ...todo, completed: !todo.completed } : todo
+      )
+    );
+  };
+
   return (
     <div className="parent-container">
       <div className="container top-container">
@@ -36,6 +44,7 @@ function App() {
             <Todos
               todos={todos}
               deleteTodo={deleteTodo}
+              toggleTodoCompletion={toggleTodoCompletion}
             />
           </div>
         </div>
