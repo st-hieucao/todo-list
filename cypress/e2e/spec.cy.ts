@@ -1,3 +1,5 @@
+/// <reference types="cypress" />
+
 describe("ToDo App", () => {
   const baseUrl = 'https://jsonplaceholder.typicode.com';
 
