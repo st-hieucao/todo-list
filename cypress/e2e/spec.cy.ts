@@ -1,17 +1,17 @@
 /// <reference types="cypress" />
 
-describe("ToDo App", () => {
+describe('ToDo App', () => {
   const baseUrl = 'https://jsonplaceholder.typicode.com';
 
   beforeEach(() => {
-    cy.visit("http://localhost:5173");
+    cy.visit('http://localhost:5173');
   });
 
-  it("should load the app successfully", () => {
-    cy.contains("h2", "Todos App");
+  it('should load the app successfully', () => {
+    cy.contains('h2', 'Todos App');
   });
 
-  it("GET - Read a todo and verify first item", () => {
+  it('GET - Read a todo and verify first item', () => {
     cy.request('GET', `${baseUrl}/todos`).then((response) => {
       expect(response.status).to.eq(200);
       const firstTodo = response.body[0];
@@ -22,24 +22,24 @@ describe("ToDo App", () => {
     });
   });
 
-  it("should add a new todo", () => {
-    const newTodo = "Sleep";
+  it('should add a new todo', () => {
+    const newTodo = 'Sleep';
 
-    cy.get(".form-input").type(newTodo, { delay: 2000 });
-    cy.get(".submit-button").click();
+    cy.get('.form-input').type(newTodo, { delay: 2000 });
+    cy.get('.submit-button').click();
 
-    cy.get(".todo").first().should("contain", newTodo);
+    cy.get('.todo').first().should('contain', newTodo);
   });
 
-  it("should delete a todo", () => {
-    const newTodo = "Sleep";
-    cy.get(".form-input").type(newTodo);
-    cy.get(".submit-button").click();
-    cy.get(".todo").first().should("contain", newTodo);
-  
-    cy.get(".todo").first().find("button").click();
-  
-    cy.get(".todo").should("not.contain", newTodo);
+  it('should delete a todo', () => {
+    const newTodo = 'Sleep';
+    cy.get('.form-input').type(newTodo);
+    cy.get('.submit-button').click();
+    cy.get('.todo').first().should('contain', newTodo);
+
+    cy.get('.todo').first().find('button').click();
+
+    cy.get('.todo').should('not.contain', newTodo);
   });
 });
 
