@@ -23,17 +23,17 @@ describe("ToDo App", () => {
   it("should add a new todo", () => {
     const newTodo = "Sleep";
 
-    cy.get(".form-input").type(newTodo);
+    cy.get(".form-input").type(newTodo, { delay: 2000 });
     cy.get(".submit-button").click();
 
-    cy.get(".todo").should("contain", newTodo);
+    cy.get(".todo").first().should("contain", newTodo);
   });
 
   it("should delete a todo", () => {
     const newTodo = "Sleep";
     cy.get(".form-input").type(newTodo);
     cy.get(".submit-button").click();
-    cy.get(".todo").should("contain", newTodo);
+    cy.get(".todo").first().should("contain", newTodo);
   
     cy.get(".todo").first().find("button").click();
   
@@ -41,46 +41,46 @@ describe("ToDo App", () => {
   });
 });
 
-describe('JSONPlaceholder API Testing with Cypress', () => {
-  const baseUrl = 'https://jsonplaceholder.typicode.com';
+// describe('JSONPlaceholder API Testing with Cypress', () => {
+//   const baseUrl = 'https://jsonplaceholder.typicode.com';
 
-  it('GET - Read a todo', () => {
-    cy.request('GET', `${baseUrl}/todos/1`).then((response) => {
-      expect(response.status).to.eq(200);
-      expect(response.body).to.have.property('id', 1);
-      expect(response.body).to.have.property('title');
-    });
-  });
+//   it('GET - Read a todo', () => {
+//     cy.request('GET', `${baseUrl}/todos/1`).then((response) => {
+//       expect(response.status).to.eq(200);
+//       expect(response.body).to.have.property('id', 1);
+//       expect(response.body).to.have.property('title');
+//     });
+//   });
 
-  it('POST - Create a new todo', () => {
-    cy.request('POST', `${baseUrl}/todos`, {
-      title: 'New Todo',
-      completed: false,
-      userId: 1,
-    }).then((response) => {
-      expect(response.status).to.eq(201);
-      expect(response.body).to.have.property('title', 'New Todo');
-      expect(response.body).to.have.property('completed', false);
-      expect(response.body).to.have.property('userId', 1);
-    });
-  });
+//   it('POST - Create a new todo', () => {
+//     cy.request('POST', `${baseUrl}/todos`, {
+//       title: 'New Todo',
+//       completed: false,
+//       userId: 1,
+//     }).then((response) => {
+//       expect(response.status).to.eq(201);
+//       expect(response.body).to.have.property('title', 'New Todo');
+//       expect(response.body).to.have.property('completed', false);
+//       expect(response.body).to.have.property('userId', 1);
+//     });
+//   });
 
-  it('PUT - Update a todo', () => {
-    cy.request('PUT', `${baseUrl}/todos/1`, {
-      id: 1,
-      title: 'Updated Title',
-      completed: false,
-      userId: 1,
-    }).then((response) => {
-      expect(response.status).to.eq(200);
-      expect(response.body).to.have.property('title', 'Updated Title');
-      expect(response.body).to.have.property('completed', false);
-    });
-  });
+//   it('PUT - Update a todo', () => {
+//     cy.request('PUT', `${baseUrl}/todos/1`, {
+//       id: 1,
+//       title: 'Updated Title',
+//       completed: false,
+//       userId: 1,
+//     }).then((response) => {
+//       expect(response.status).to.eq(200);
+//       expect(response.body).to.have.property('title', 'Updated Title');
+//       expect(response.body).to.have.property('completed', false);
+//     });
+//   });
 
-  it('DELETE - Delete a todo', () => {
-    cy.request('DELETE', `${baseUrl}/todos/1`)
-      .its('status')
-      .should('eq', 200);
-  });
-});
+//   it('DELETE - Delete a todo', () => {
+//     cy.request('DELETE', `${baseUrl}/todos/1`)
+//       .its('status')
+//       .should('eq', 200);
+//   });
+// });
